@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end" (click)='onClick()'>
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label><ion-title><ion-icon name="clipboard-outline"></ion-icon>Habit Maker</ion-title></ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="danger">
+      <ion-title>Start Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/nuevo">HABITOS</ion-item>
+      <ion-item>PROGRESO</ion-item>
+      <ion-item>CONFIGURACION</ion-item>
+      </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+<ion-router-outlet id="main"></ion-router-outlet>
+<img src="assets/habito.png" class="logo">
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item class="letracolor">Created by Alan Val</ion-item>
+  </ion-toolbar>
+</ion-footer> 
