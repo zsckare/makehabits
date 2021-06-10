@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../../services/db.service';
 import { ActionSheetController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-nuevo',
   templateUrl: './nuevo.page.html',
@@ -12,7 +15,7 @@ export class NuevoPage implements OnInit {
   Data: any[] = [];
   info: any;
     
-  constructor(private db: DbService,public actionSheetController: ActionSheetController) { }
+  constructor(private db: DbService,private activatedRoute: ActivatedRoute,public alertController: AlertController,private router: Router) { }
 
   ngOnInit() {
     this.db.dbState().subscribe((res) => {
@@ -26,37 +29,49 @@ export class NuevoPage implements OnInit {
       }
     }); 
   }
-
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
-      cssClass: 'my-custom-class',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Edit',
-        icon: 'pencil',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, , {
-        text: 'Cancelar',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
-
-    const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+  editarHabito(item){
+    let navigationExtras: NavigationExtras = {
+      state: {
+        special: JSON.stringify(item)
+      }
+    };
+    console.log(navigationExtras)
+    this.router.navigate(['edithabito'], navigationExtras);
   }
+ 
+  async alertDelete(id){
+    const alert = await this.alertController.create({
+      
+      message: '¿Eliminar registro?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.eliminarHabito(id)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  eliminarHabito(id){
+    this.db.deleteHabito(id).then((res)=>{
+      this.db.getHabitos().then((res)=>{
+        this.db.fetchHabitos().subscribe(item => {      
+          console.log(item)
+          this.habitos  = item
+        })
+      })
+    })
+  }
+  
 
 }

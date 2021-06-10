@@ -90,10 +90,11 @@ export class DbService {
 
   // Update
   updateHabito(id, habito: Habito) {
-    let data = [habito.nombre, habito.descripcion];
-    return this.storage.executeSql(`UPDATE songtable SET nombre = ?,descripcion = ?,color=?,hora=?,fechainicio=?,fechafin=?,frasemotivacional=? WHERE id = ${id}`, data)
+    let data = [habito.nombre, habito.descripcion,habito.color,habito.hora,habito.fechainicio,habito.fechafin,habito.frasemotivacional];
+    return this.storage.executeSql(`UPDATE habitos SET nombre = ?,descripcion = ?,color=?,hora=?,fechainicio=?,fechafin=?,frasemotivacional=? WHERE id = ${id}`, data)
     .then(data => {
       this.getHabitos();
+      console.log("se han guardado los cambios")
     })
   }
 

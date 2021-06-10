@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'nuevo-habito',
     loadChildren: () => import('./pages/nuevo-habito/nuevo-habito.module').then( m => m.NuevoHabitoPageModule)
   },
+  {
+    path: 'edithabito',
+    loadChildren: () => import('./pages/edithabito/edithabito.module').then( m => m.EdithabitoPageModule)
+  },
 ];
 
 @NgModule({

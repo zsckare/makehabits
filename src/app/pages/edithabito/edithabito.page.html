@@ -1,0 +1,78 @@
+<ion-header background="primary">
+  <ion-toolbar background="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+   
+
+    <ion-title class="ion-title" size="small">Editar hábito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label required="true" size="15" type="text" position="floating">Nombre del habito:</ion-label>
+    <ion-input  [(ngModel)]="data.nombre" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label required="true" size="30" type="text" position="floating">Describa su habito:</ion-label>
+    <ion-input [(ngModel)]="data.descripcion" ></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label required="true"  >Elija un color:</ion-label>
+    <ion-select value="primary" [(ngModel)]="data.color">
+      <ion-select-option value="primary">Azul</ion-select-option>
+      <ion-select-option value="secondary">Azulcielo</ion-select-option>
+      <ion-select-option value="danger">Rojo</ion-select-option>
+      <ion-select-option value="light">Blanco</ion-select-option>
+      <ion-select-option value="dark">Negro</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label required="true" size="15" type="text" >Elija una hora del dia:</ion-label>
+  </ion-item>
+  <ion-item>
+        <ion-list>
+      <ion-radio-group value="biff" [(ngModel)]="data.hora" >
+    
+        <ion-item>
+          <ion-label>Mañana</ion-label>
+          <ion-radio slot="start" value="biff"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Tarde</ion-label>
+          <ion-radio slot="start" value="griff"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Noche</ion-label>
+          <ion-radio slot="start" value="buford"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </ion-item>
+
+  <ion-item required="true" size="15" type="text">Elija fecha de inicio:    
+    <ion-datetime displayFormat="MM-DD-YYYY" min="2021" max="2030" [(ngModel)]="data.fechainicio" ></ion-datetime>
+  </ion-item>
+  
+
+  <ion-item required="true" size="15" type="text">Elija fecha de fin:    
+    <ion-datetime displayFormat="MM-DD-YYYY" min="2021" max="2030" [(ngModel)]="data.fechafin" ></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label size="15" type="text" position="" >Frase motivacional:</ion-label>
+    <ion-input placeholder="Opcional"  [(ngModel)]="data.frasemotivacional"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="saveHabito()" >Guardar</ion-button>
+  </ion-item>
+</ion-content>

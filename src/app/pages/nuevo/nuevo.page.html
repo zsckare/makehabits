@@ -21,18 +21,30 @@
   </div>
   <div *ngIf="habitos">
     <ion-list>
-      <ion-item *ngFor="let data of habitos">
-        <ion-avatar slot="start">
-          <div class="{{data.color}}"></div>
-        </ion-avatar>
-        <ion-label>
-          <h2>Nombre {{data.nombre}}</h2>
-          <h2>Descripcion: {{data.descripcion | date:'shortDate'}} </h2>
-          <h2>Fecha inicio: {{data.fechainicio | date:'shortDate'}}</h2>
-          <h3>Fecha Fin: {{data.fechafin}}</h3>
-          <h3>Frase motivacional:  {{data.frasemotivacional}}</h3>
-        </ion-label>        
-      </ion-item>
+      <ion-item-sliding *ngFor="let data of habitos" style="text-align: center;" >
+        <ion-item >
+          <ion-avatar slot="start">
+            <div class="{{data.color}}"></div>
+          </ion-avatar>
+          <ion-label>
+            <h2>Nombre {{data.nombre}}</h2>
+            <h2>Descripcion: {{data.descripcion }} </h2>
+            <h2>Fecha inicio: {{data.fechainicio | date:'shortDate'}}</h2>
+            <h3>Fecha Fin: {{data.fechafin | date:'shortDate'}}</h3>
+            <h3>Frase motivacional:  {{data.frasemotivacional}}</h3>
+          </ion-label>        
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="primary" (click)="editarHabito(data)">
+            <ion-icon name="pencil-outline"></ion-icon>
+            Editar
+          </ion-item-option>
+          <ion-item-option color="red" (click)="alertDelete(data.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </div>
 </ion-content>
