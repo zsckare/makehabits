@@ -15,8 +15,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-button expand="full" fill="outline" routerLink="/nuevo-habito">Agregar un nuevo habito</ion-button>
-  <img src="assets/habito.png" class="logo">
+  <div *ngIf="!habitos">
+    <ion-button expand="full" fill="outline" routerLink="/nuevo-habito">Agregar un nuevo habito</ion-button>
+    <img src="assets/habito.png" class="logo">
+  </div>
+  <div *ngIf="habitos">
+
+  </div>
 </ion-content>
 
 

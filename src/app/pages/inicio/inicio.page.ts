@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-
+import { DbService  } from '../../services/db.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -16,9 +16,15 @@ export class InicioPage implements OnInit {
     },
   ];
   
-  constructor(private menu: MenuController) { }
+  constructor(private menu: MenuController, private db: DbService ) { }
   
   ngOnInit() {
+    this.db.dbState().subscribe((res) => {
+      if(res){
+        this.db.fetchHabitos().subscribe(item => {      
+        })
+      }
+    });    
   }
   
   openFirst() {

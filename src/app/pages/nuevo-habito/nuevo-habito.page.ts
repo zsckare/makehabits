@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DbService } from '../../services/db.service';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-nuevo-habito',
   templateUrl: './nuevo-habito.page.html',
@@ -14,9 +15,17 @@ export class NuevoHabitoPage implements OnInit {
   fechainicio: '';
   fechafin: '';
   frasemotivacional: '';
-  constructor() { }
+  constructor(private db: DbService,private navCtrl: NavController) { }
 
   ngOnInit() {
   }
   date: string = new Date().toISOString();
+
+  saveHabito(){
+    this.db.addHabito(this.nombre,this.descripcion,this.color,this.hora,this.fechainicio,this.fechafin,this.frasemotivacional).then((res)=>{
+      this.db.getHabitos().then((res)=>{
+        this.navCtrl.pop()
+      })
+    })
+  }
 }
