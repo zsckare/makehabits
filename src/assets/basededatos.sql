@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS habitos(
     descripcion TEXT,
     color TEXT,
     hora TEXT,
-    fechainicio TEXT,
-    fechafin TEXT,
-    frasemotivacional TEXT,
+    fechainicio DATE,
+    fechafin DATE,
+    frasemotivacional TEXT
 );

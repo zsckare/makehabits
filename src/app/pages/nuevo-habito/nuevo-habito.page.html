@@ -60,15 +60,13 @@
     </ion-list>
   </ion-item>
 
-  <ion-item required="true" size="15" type="text">Elija fecha de inicio:
-    <ion-label>DDDD MMM D, YYYY</ion-label>
-    <ion-datetime displayFormat="DDDD MMM D, YYYY" min="2021" max="2030" [(ngModel)]="fechainicio" ></ion-datetime>
+  <ion-item required="true" size="15" type="text">Elija fecha de inicio:    
+    <ion-datetime displayFormat="MM-DD-YYYY" min="2021" max="2030" [(ngModel)]="fechainicio" ></ion-datetime>
   </ion-item>
   
 
-  <ion-item required="true" size="15" type="text">Elija fecha de fin:
-    <ion-label>DDDD MMM D, YYYY</ion-label>
-    <ion-datetime displayFormat="DDDD MMM D, YYYY" min="2021" max="2030" [(ngModel)]="fechafin" ></ion-datetime>
+  <ion-item required="true" size="15" type="text">Elija fecha de fin:    
+    <ion-datetime displayFormat="MM-DD-YYYY" min="2021" max="2030" [(ngModel)]="fechafin" ></ion-datetime>
   </ion-item>
 
   <ion-item>
@@ -77,6 +75,6 @@
   </ion-item>
 
   <ion-item>
-    <ion-button>Guardar</ion-button>
+    <ion-button (click)="saveHabito()" >Guardar</ion-button>
   </ion-item>
 </ion-content>

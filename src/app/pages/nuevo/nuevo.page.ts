@@ -17,8 +17,10 @@ export class NuevoPage implements OnInit {
     this.db.dbState().subscribe((res) => {
       if(res){
         this.db.fetchHabitos().subscribe(item => {
-          this.Data = item          
-          this.info = JSON.parse(JSON.stringify(this.Data))          
+          this.Data = item 
+          console.log(this.Data)         
+          this.habitos = JSON.parse(JSON.stringify(this.Data)) 
+                   
         })
       }
     }); 

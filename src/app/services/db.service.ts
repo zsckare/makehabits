@@ -21,7 +21,7 @@ export class DbService {
   ) {
     this.platform.ready().then(() => {
       this.sqlite.create({
-        name: 'positronx_db.db',
+        name: 'habitmaker.db',
         location: 'default'
       })
       .then((db: SQLiteObject) => {
@@ -42,7 +42,7 @@ export class DbService {
     // Render fake data
     getFakeData() {
       this.httpClient.get(
-        'assets/dump.sql', 
+        'assets/basededatos.sql', 
         {responseType: 'text'}
       ).subscribe(data => {
         this.sqlPorter.importSqlToDb(this.storage, data)
